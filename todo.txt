@@ -1,0 +1,3 @@
+# TODO
+# scene detector is okay as a first try, but should really work as a guideline of "if there are no screenshots within this scene, something's wrong"
+# not "let's just sample the middle"

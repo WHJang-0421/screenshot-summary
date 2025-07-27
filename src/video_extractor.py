@@ -24,6 +24,6 @@ class VideoFrameExtractor:
         image.save(path)
 
 if __name__ == "__main__":
-    with VideoFrameExtractor("resources/[ENG_SUB] 일론 머스크의 창당, 미국에서 제3당이 성공할 수 있을까_ _ 양당제, 민주당, 공화당.mp4") as extractor:
+    with VideoFrameExtractor("resources/video1.mp4") as extractor:
         img = extractor.extract_image(30)
         extractor.save(img, "out/screenshot30s.jpg")

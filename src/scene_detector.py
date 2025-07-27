@@ -1,7 +1,7 @@
 from scenedetect import detect, ContentDetector
 from video_extractor import VideoFrameExtractor
 
-video_path = "resources/[ENG_SUB] 일론 머스크의 창당, 미국에서 제3당이 성공할 수 있을까_ _ 양당제, 민주당, 공화당.mp4"
+video_path = "resources/video1.mp4"
 scene_list = detect(video_path, ContentDetector())
 
 screenshot_times = []

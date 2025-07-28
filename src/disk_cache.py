@@ -8,11 +8,10 @@ def get_cache_path(video_path):
     cache_name = os.path.splitext(video_name)[0] + ".pkl"
     return os.path.join(cache_dir, cache_name)
 
-def get_image_path(video_path, seconds):
+def get_image_path(video_path, seconds, postfix=""):
     video_name = os.path.basename(video_path) 
     image_dir = "out"
-    cache_name = os.path.splitext(video_name)[0] + f"{seconds}s" + ".jpg"
-    return os.path.join(image_dir, cache_name)
+    return os.path.join(image_dir, os.path.splitext(video_name)[0] + f"_{ postfix }", f"{seconds}s.jpg")
 
 def detect_with_cache(video_path, *args, **kwargs):
     '''

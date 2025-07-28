@@ -1,7 +1,7 @@
 import os
 from moviepy import VideoFileClip
 from PIL import Image
-from disk_cache import get_image_path
+from src.disk_cache import get_image_path
 
 class VideoFrameExtractor:
     def __init__(self, video_path):
@@ -17,10 +17,13 @@ class VideoFrameExtractor:
         if self.clip:
             self.clip.close()
 
-    def extract_and_save(self, second, override=False):
-        image_path = get_image_path(self.video_path, second)
+    def extract_and_save(self, second, override=False, postfix=""):
+        image_path = get_image_path(self.video_path, second, postfix)
         if not override and os.path.exists(image_path):
             return
+
+        image_folder = os.path.dirname(image_path)
+        os.makedirs(image_folder, exist_ok=True)
 
         frame = self.clip.get_frame(second)
         img = Image.fromarray(frame)
@@ -29,5 +32,4 @@ class VideoFrameExtractor:
     
 if __name__ == "__main__":
     with VideoFrameExtractor("resources/video1.mp4") as extractor:
-        img = extractor.extract_image(30)
-        extractor.save(img, "out/screenshot30s.jpg")
+        img = extractor.extract_and_save(30)

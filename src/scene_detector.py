@@ -1,8 +1,9 @@
-from scenedetect import detect, ContentDetector
+from scenedetect import ContentDetector
 from video_extractor import VideoFrameExtractor
+from disk_cache import detect_with_cache
 
 video_path = "resources/video1.mp4"
-scene_list = detect(video_path, ContentDetector())
+scene_list = detect_with_cache(video_path, ContentDetector())
 
 screenshot_times = []
 for start, end in scene_list:
@@ -13,5 +14,8 @@ for start, end in scene_list:
 
 with VideoFrameExtractor(video_path) as extractor:
     for i, t in enumerate(screenshot_times):
-        img = extractor.extract_image(t)
-        extractor.save(img, f"out/content_detector/{i}.jpg")
+        img = extractor.extract_and_save(30)
+
+# for future refactoring
+class ContentTimeSampler:
+    pass
